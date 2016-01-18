@@ -22,7 +22,7 @@ if(empty($_SESSION['choice']) || isset($_POST['reset'])){
     saveMyGame($pdo);
 }else{
     $choice = $_SESSION['choice'];
-    
+
 }
 
 
@@ -55,7 +55,7 @@ if( !isset($_POST['guess'])
 function myBestScore($pdo){
 
     $re = $pdo->prepare("UPDATE myGameId SET best_score = :best_score
-                          WHERE users = :users"
+WHERE users = :users"
     );
     $re->bindParam("best_score",$_SESSION['best_score']);
     $re->bindParam("users",$_SESSION['user']);
@@ -64,9 +64,8 @@ function myBestScore($pdo){
 }
 
 function saveMyGame($pdo){
-
     $saveMe = $pdo->prepare("UPDATE myGameId SET strokes = :score, plusOrLess = :response, answer = :choice
-                          WHERE users = :users"
+WHERE users = :users"
     );
     $saveMe->bindParam("score",$_SESSION['score']);
     $saveMe->bindParam("response",$_SESSION['response']);
@@ -75,6 +74,9 @@ function saveMyGame($pdo){
     $saveMe->execute();
     $result = $saveMe->fetch();
 }
+
+
+/*J'ai laissé la fonction même si elle ne fonctionne pas */
 
 ?>
 <!DOCTYPE html>
